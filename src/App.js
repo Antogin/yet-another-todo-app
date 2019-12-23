@@ -5,10 +5,13 @@ import ThemeContextProvider from './context/ThemeContext';
 
 function App() {
 	return (
-		<div className="App">
+		<div className="App ">
 			<ThemeContextProvider>
 				<Header />
-				<List />
+
+				<div class="container is-fluid">
+					<List />
+				</div>
 			</ThemeContextProvider>
 		</div>
 	);
