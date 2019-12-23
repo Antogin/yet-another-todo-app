@@ -9,7 +9,7 @@ function App() {
 			<ThemeContextProvider>
 				<Header />
 
-				<div class="container is-fluid">
+				<div className="container is-fluid">
 					<List />
 				</div>
 			</ThemeContextProvider>

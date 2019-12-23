@@ -1,6 +1,6 @@
 import React, { createContext, Component } from 'react';
 
-export const { Provider } = createContext();
+export const ThemeContext = createContext();
 
 class ThemeContextProvider extends Component {
 	state = {
@@ -9,8 +9,16 @@ class ThemeContextProvider extends Component {
 		dark: { syntax: '#ddd', ui: '#333', bg: '#555' }
 	};
 
+	toggleTheme = () => {
+		this.setState({ isLightTheme: !this.state.isLightTheme });
+	};
+
 	render() {
-		return <Provider value={{ ...this.state }}>{this.props.children}</Provider>;
+		return (
+			<ThemeContext.Provider value={{ ...this.state, toggleTheme: this.toggleTheme }}>
+				{this.props.children}
+			</ThemeContext.Provider>
+		);
 	}
 }
 
