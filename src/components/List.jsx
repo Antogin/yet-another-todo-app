@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { TodoContext } from '../context/TodoContext';
 import NewTaskForm from './NewTaskForm';
+import './List.scss';
 
 const TodoList = () => {
 	const { todoItems, addTodo } = useContext(TodoContext);
@@ -9,8 +10,9 @@ const TodoList = () => {
 		<div className="list is-hoverable" style={{ margin: '10px' }}>
 			{todoItems.map(({ title, id }) => {
 				return (
-					<div key={id} className="list-item">
+					<div key={id} className="list-item ">
 						{title}
+						<div className="delete is-pulled-right" />
 					</div>
 				);
 			})}
