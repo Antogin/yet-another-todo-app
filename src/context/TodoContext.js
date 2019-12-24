@@ -7,12 +7,12 @@ const TodoContextProvider = ({ children }) => {
 	const [ todoItems, setTodoItems ] = useState([
 		{
 			title: 'learn context',
-			id: uuid(),
+			id: '1',
 			done: true
 		},
 		{
 			title: 'learn hooks',
-			id: uuid(),
+			id: '2',
 			done: false
 		}
 	]);
@@ -43,7 +43,9 @@ const TodoContextProvider = ({ children }) => {
 	};
 
 	const removeTodo = (id) => {
-		setTodoItems(todoItems.filter((todo) => todo.id === id));
+		const filter = todoItems.filter((todoItem) => todoItem.id !== id);
+		console.log(id, todoItems[0], todoItems[0].id === id);
+		setTodoItems(filter);
 	};
 
 	return (

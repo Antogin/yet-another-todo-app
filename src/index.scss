@@ -38,3 +38,7 @@ $input-shadow: none;
 @import '../node_modules/bulma/sass/form/all.sass';
 @import '../node_modules/bulma/sass/layout/hero.sass';
 @import '../node_modules/bulma/sass/layout/section.sass';
+
+.is-clickable {
+	cursor: pointer;
+}

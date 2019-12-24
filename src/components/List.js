@@ -4,20 +4,28 @@ import NewTaskForm from './NewTaskForm';
 import './List.scss';
 
 const TodoList = () => {
-	const { todoItems, addTodo, toggleState } = useContext(TodoContext);
+	const { todoItems, addTodo, toggleState, removeTodo } = useContext(TodoContext);
+
+	const onClickDelete = (e, id) => {
+		e.preventDefault();
+		e.stopPropagation();
+		removeTodo(id);
+	};
 
 	return (
-		<div className="list is-hoverable" style={{ margin: '10px' }}>
+		<div className="list" style={{ margin: '10px' }}>
 			{todoItems.map(({ title, id, done }) => {
 				return (
 					<div
 						onClick={() => toggleState(id)}
 						key={id}
-						className="list-item"
+						className="list-item  is-clickable"
 						style={{ textDecoration: done ? 'line-through' : 'none' }}
 					>
 						{title}
-						<div className="delete is-pulled-right" />
+						{done ? (
+							<div value={id} onClick={(e) => onClickDelete(e, id)} className="delete is-pulled-right" />
+						) : null}
 					</div>
 				);
 			})}
