@@ -8,7 +8,6 @@ function App() {
 		<div className="App ">
 			<TodoContextProvider>
 				<Header />
-
 				<div className="container is-fluid">
 					<List />
 				</div>
