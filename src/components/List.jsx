@@ -1,15 +1,22 @@
-import React, { Component } from 'react';
+import React, { useContext } from 'react';
+import { TodoContext } from '../context/TodoContext';
+import NewTaskForm from './NewTaskForm';
 
-class List extends Component {
-	render() {
-		return (
-			<div className="list is-hoverable" style={{ margin: '10px' }}>
-				<div className="list-item">Featured</div>
-				<div className="list-item is-active">All Posts</div>
-				<div className="list-item">Announcements</div>
-			</div>
-		);
-	}
-}
+const TodoList = () => {
+	const { todoItems, addTodo } = useContext(TodoContext);
 
-export default List;
+	return (
+		<div className="list is-hoverable" style={{ margin: '10px' }}>
+			{todoItems.map(({ title, id }) => {
+				return (
+					<div key={id} className="list-item">
+						{title}
+					</div>
+				);
+			})}
+			<NewTaskForm onSubmit={addTodo} />
+		</div>
+	);
+};
+
+export default TodoList;
