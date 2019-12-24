@@ -44,7 +44,6 @@ const TodoContextProvider = ({ children }) => {
 
 	const removeTodo = (id) => {
 		const filter = todoItems.filter((todoItem) => todoItem.id !== id);
-		console.log(id, todoItems[0], todoItems[0].id === id);
 		setTodoItems(filter);
 	};
 
