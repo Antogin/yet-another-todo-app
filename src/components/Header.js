@@ -1,17 +1,10 @@
-import React, { useContext } from 'react';
-import { ThemeContext } from '../context/ThemeContext';
-import ThemeToggle from './ThemeToggle';
+import React from 'react';
 
 const Header = () => {
-	const { isLightTheme, light, dark } = useContext(ThemeContext);
-	const { bg } = isLightTheme ? light : dark;
-
 	return (
-		<nav className="navbar" style={{ background: bg }} role="navigation" aria-label="main navigation">
+		<nav className="navbar" role="navigation" aria-label="main navigation">
 			<div className="navbar-brand">
-				<div className="navbar-item">
-					<ThemeToggle />
-				</div>
+				<div className="navbar-item">Yet another todo ap</div>
 			</div>
 		</nav>
 	);
