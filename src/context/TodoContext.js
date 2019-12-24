@@ -4,12 +4,13 @@ import uuid from 'uuid/v1';
 export const TodoContext = createContext();
 
 const TodoContextProvider = ({ children }) => {
-	const [ todoItems, setTodoItems ] = useState(JSON.parse(localStorage.getItem('todos')));
+	const [ todoItems, setTodoItems ] = useState(JSON.parse(localStorage.getItem('todos')) || []);
 
 	const updateTodoItems = (todos) => {
 		setTodoItems(todos);
 		localStorage.setItem('todos', JSON.stringify(todos));
 	};
+
 	const addTodo = (title) => {
 		updateTodoItems([
 			...todoItems,
