@@ -4,21 +4,14 @@ import uuid from 'uuid/v1';
 export const TodoContext = createContext();
 
 const TodoContextProvider = ({ children }) => {
-	const [ todoItems, setTodoItems ] = useState([
-		{
-			title: 'learn context',
-			id: '1',
-			done: true
-		},
-		{
-			title: 'learn hooks',
-			id: '2',
-			done: false
-		}
-	]);
+	const [ todoItems, setTodoItems ] = useState(JSON.parse(localStorage.getItem('todos')));
 
+	const updateTodoItems = (todos) => {
+		setTodoItems(todos);
+		localStorage.setItem('todos', JSON.stringify(todos));
+	};
 	const addTodo = (title) => {
-		setTodoItems([
+		updateTodoItems([
 			...todoItems,
 			{
 				title,
@@ -29,7 +22,7 @@ const TodoContextProvider = ({ children }) => {
 	};
 
 	const toggleState = (id) => {
-		setTodoItems(
+		updateTodoItems(
 			todoItems.map((todo) => {
 				if (todo.id === id) {
 					return {
@@ -44,7 +37,7 @@ const TodoContextProvider = ({ children }) => {
 
 	const removeTodo = (id) => {
 		const filter = todoItems.filter((todoItem) => todoItem.id !== id);
-		setTodoItems(filter);
+		updateTodoItems(filter);
 	};
 
 	return (
