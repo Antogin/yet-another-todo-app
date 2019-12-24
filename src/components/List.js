@@ -4,13 +4,18 @@ import NewTaskForm from './NewTaskForm';
 import './List.scss';
 
 const TodoList = () => {
-	const { todoItems, addTodo } = useContext(TodoContext);
+	const { todoItems, addTodo, toggleState } = useContext(TodoContext);
 
 	return (
 		<div className="list is-hoverable" style={{ margin: '10px' }}>
-			{todoItems.map(({ title, id }) => {
+			{todoItems.map(({ title, id, done }) => {
 				return (
-					<div key={id} className="list-item ">
+					<div
+						onClick={() => toggleState(id)}
+						key={id}
+						className="list-item"
+						style={{ textDecoration: done ? 'line-through' : 'none' }}
+					>
 						{title}
 						<div className="delete is-pulled-right" />
 					</div>

@@ -8,7 +8,7 @@ const TodoContextProvider = ({ children }) => {
 		{
 			title: 'learn context',
 			id: uuid(),
-			done: false
+			done: true
 		},
 		{
 			title: 'learn hooks',
@@ -28,11 +28,27 @@ const TodoContextProvider = ({ children }) => {
 		]);
 	};
 
+	const toggleState = (id) => {
+		setTodoItems(
+			todoItems.map((todo) => {
+				if (todo.id === id) {
+					return {
+						...todo,
+						done: !todo.done
+					};
+				}
+				return todo;
+			})
+		);
+	};
+
 	const removeTodo = (id) => {
 		setTodoItems(todoItems.filter((todo) => todo.id === id));
 	};
 
-	return <TodoContext.Provider value={{ todoItems, addTodo, removeTodo }}> {children}</TodoContext.Provider>;
+	return (
+		<TodoContext.Provider value={{ todoItems, addTodo, removeTodo, toggleState }}> {children}</TodoContext.Provider>
+	);
 };
 
 export default TodoContextProvider;
