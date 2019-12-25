@@ -17,7 +17,6 @@ const TodoContextProvider = ({ children }) => {
 	const todos = JSON.parse(localStorage.getItem('todos'));
 	const [ todoItems, setTodoItems ] = useState(todos || defaultTodo);
 
-	console.log(JSON.parse(localStorage.getItem('todos')));
 	const updateTodoItems = (todos) => {
 		setTodoItems(todos);
 		localStorage.setItem('todos', JSON.stringify(todos));
