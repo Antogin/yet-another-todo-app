@@ -44,4 +44,7 @@ router.delete('/todos', ({ body }, res) => {
 
 app.use('/.netlify/functions/api', router);
 
-module.exports.handler = serverless(app);
+export async function handler(event, context) {
+	const result = await serverless(app)(event, context);
+	return result;
+}
