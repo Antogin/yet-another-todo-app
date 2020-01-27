@@ -28,6 +28,7 @@ const TodoContextProvider = ({ children }) => {
 			...todoItems,
 			{
 				title,
+				timeSpent: 0,
 				id: uuid(),
 				done: false
 			}
@@ -38,8 +39,6 @@ const TodoContextProvider = ({ children }) => {
 		updateTodoItems(
 			todoItems.map((todo) => {
 				if (todo.id === id) {
-					console.log(todoItems);
-
 					return {
 						...todo,
 						started: new Date().toISOString(),
@@ -55,12 +54,10 @@ const TodoContextProvider = ({ children }) => {
 		updateTodoItems(
 			todoItems.map((todo) => {
 				if (todo.id === id) {
-					console.log(todo.started);
-
 					return {
 						...todo,
 						started: null,
-						timeSpent: differenceInMilliseconds(new Date(), new Date(todo.started))
+						timeSpent: differenceInMilliseconds(new Date(), new Date(todo.started)) + todo.timeSpent
 					};
 				}
 				return todo;
