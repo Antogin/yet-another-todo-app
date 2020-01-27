@@ -1,5 +1,6 @@
 import React, { createContext, useState } from 'react';
 import uuid from 'uuid/v1';
+import { differenceInMilliseconds } from 'date-fns';
 
 export const TodoContext = createContext();
 
@@ -33,6 +34,41 @@ const TodoContextProvider = ({ children }) => {
 		]);
 	};
 
+	const startWork = (id) => {
+		updateTodoItems(
+			todoItems.map((todo) => {
+				if (todo.id === id) {
+					console.log(todoItems);
+
+					return {
+						...todo,
+						started: new Date().toISOString(),
+						timeSpent: todo.timeSpent ? todo.timeSpent : 0
+					};
+				}
+				return todo;
+			})
+		);
+	};
+
+	const stopWork = (id) => {
+		updateTodoItems(
+			todoItems.map((todo) => {
+				if (todo.id === id) {
+					console.log(todo.started);
+
+					return {
+						...todo,
+						started: null,
+						timeSpent: differenceInMilliseconds(new Date(), new Date(todo.started))
+					};
+				}
+				return todo;
+			})
+		);
+		console.log(todoItems);
+	};
+
 	const toggleState = (id) => {
 		updateTodoItems(
 			todoItems.map((todo) => {
@@ -53,7 +89,18 @@ const TodoContextProvider = ({ children }) => {
 	};
 
 	return (
-		<TodoContext.Provider value={{ todoItems, addTodo, removeTodo, toggleState }}> {children}</TodoContext.Provider>
+		<TodoContext.Provider
+			value={{
+				todoItems,
+				addTodo,
+				removeTodo,
+				toggleState,
+				startWork,
+				stopWork
+			}}
+		>
+			{children}
+		</TodoContext.Provider>
 	);
 };
 
