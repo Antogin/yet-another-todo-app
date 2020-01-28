@@ -5,13 +5,10 @@ import { differenceInMilliseconds } from 'date-fns';
 export const TodoContext = createContext();
 
 const defaultTodo = [
-	{ title: 'Learn about hooks', id: '5dc99cd0-2712-11ea-aeb4-9f34813c101c', done: true },
-	{ title: 'Learn about context', id: '62a55b40-2712-11ea-aeb4-9f34813c101c', done: true },
 	{ title: 'Deploy the thing', id: '660e9df0-2712-11ea-aeb4-9f34813c101c', done: true },
 	{ title: 'PWA support', id: '684c0ad0-2712-11ea-aeb4-9f34813c101c', done: true },
-	{ title: 'Auth', id: '6b025130-2712-11ea-aeb4-9f34813c101c', done: false },
-	{ title: 'Online sync', id: '6dad4cf0-2712-11ea-aeb4-9f34813c101c', done: false },
-	{ title: 'Real time updates', id: '71864160-2712-11ea-aeb4-9f34813c101c', done: false }
+	{ title: 'Time tracking', id: 'ab025130-2712-11ea-aeb4-9f34813c101c', done: true },
+	{ title: 'Online saves', id: '6dad4cf0-2712-11ea-aeb4-9f34813c101c', done: false }
 ];
 
 const TodoContextProvider = ({ children }) => {
